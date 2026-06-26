@@ -17,6 +17,9 @@
   --sky-400: #38B6E0;    /* light sky-blue accent (same family as Amgen blue) */
   --cyan-400: #38B6E0;   /* accent alias */
   --teal-400: #14B8A6;   /* subtle teal — used ONLY as the far end of gradients */
+  /* Shared hero gradient (homepage + every inner page header). Blue dominates;
+     teal bridges; only a small PHDc-green corner at the very end. */
+  --hero-grad: linear-gradient(140deg, #06294F 0%, #0A4A92 32%, var(--blue-600) 64%, #2589A0 88%, #3F8C6E 100%);
 
   --ink: #16222F;
   --slate: #46566A;
@@ -199,8 +202,7 @@ main:focus { outline: none; }
    ========================================================================== */
 .hero {
   position: relative; overflow: hidden;
-  background:
-    linear-gradient(140deg, #06294F 0%, #0A4A92 28%, var(--blue-600) 52%, #1F8D9C 78%, #3F8C6E 100%);
+  background: var(--hero-grad);
   color: #EAF2FB;
 }
 .hero::after {  /* faint world-map / grid motif */
@@ -227,9 +229,7 @@ main:focus { outline: none; }
 .hero .zh { color: #9FC0E0; font-size: .98rem; }
 
 /* page hero (inner pages) */
-.page-hero { background:
-    linear-gradient(150deg, var(--navy-800), var(--blue-600));
-  color: #EAF2FB; }
+.page-hero { background: var(--hero-grad); color: #EAF2FB; }
 .page-hero .wrap { padding-block: clamp(2.6rem, 6vw, 4.2rem); }
 .page-hero h1 { color: #fff; }
 .page-hero p { color: #C7DBF0; max-width: 64ch; font-size: 1.12rem; margin-top: .6rem; }
