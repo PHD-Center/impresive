@@ -8,3 +8,6 @@ Desktop.ini
 
 # Archives
 *.zip
+
+# Reference assets not part of the site (e.g. brand logos used only for color picking)
+/images.png
