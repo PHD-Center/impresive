@@ -69,7 +69,7 @@
   })();
 
   /* ---------- shared markup ---------- */
-  var MARK = '<svg class="mark" viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="bm-%ID%" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0063C3"/><stop offset="1" stop-color="#38B6E0"/></linearGradient></defs><rect width="64" height="64" rx="14" fill="%BG%"/><g stroke="url(#bm-%ID%)" stroke-width="2.4" fill="none" opacity=".9"><line x1="16" y1="46" x2="32" y2="32"/><line x1="32" y1="32" x2="48" y2="18"/><line x1="32" y1="32" x2="48" y2="44"/><line x1="16" y1="46" x2="30" y2="50"/></g><g fill="url(#bm-%ID%)"><circle cx="16" cy="46" r="5"/><circle cx="32" cy="32" r="6"/><circle cx="48" cy="18" r="5"/><circle cx="48" cy="44" r="4.5"/><circle cx="30" cy="51" r="3.5"/></g></svg>';
+  var MARK = '<svg class="mark" viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="bm-%ID%" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0063C3"/><stop offset="1" stop-color="#3F7D62"/></linearGradient></defs><rect width="64" height="64" rx="14" fill="%BG%"/><g stroke="url(#bm-%ID%)" stroke-width="2.4" fill="none" opacity=".9"><line x1="16" y1="46" x2="32" y2="32"/><line x1="32" y1="32" x2="48" y2="18"/><line x1="32" y1="32" x2="48" y2="44"/><line x1="16" y1="46" x2="30" y2="50"/></g><g fill="url(#bm-%ID%)"><circle cx="16" cy="46" r="5"/><circle cx="32" cy="32" r="6"/><circle cx="48" cy="18" r="5"/><circle cx="48" cy="44" r="4.5"/><circle cx="30" cy="51" r="3.5"/></g></svg>';
   function mark(id, bg) { return MARK.replace(/%ID%/g, id).replace("%BG%", bg || "#0A2540"); }
 
   /* primary nav + "Explore more" dropdown (only built pages are listed) */

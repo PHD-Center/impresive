@@ -7,14 +7,18 @@
 /* ----- Design tokens ----- */
 :root {
   /* Blue palette */
-  --navy-900: #00305E;   /* deep Amgen blue — footer / dark sections */
-  --navy-800: #00498F;
+  --navy-900: #0A3A6B;   /* deep blue — footer / dark sections (lighter, less heavy) */
+  --navy-800: #0E4E96;
   --blue-700: #004E9E;   /* Amgen-blue dark (hover) */
   --blue-600: #0063C3;   /* AMGEN BLUE — primary */
   --blue-500: #2480D8;   /* interactive */
   --blue-400: #4F9BE8;
   --blue-200: #BBD6F2;
-  --cyan-400: #38B6E0;   /* accent */
+  /* PHDc green — secondary accent (pairs with Amgen blue) */
+  --green-700: #1D6F57;
+  --green-600: #3F7D62;  /* PHDc green */
+  --green-400: #6BAE8E;
+  --cyan-400: #3F7D62;   /* accent alias -> PHDc green */
 
   --ink: #16222F;
   --slate: #46566A;
@@ -198,7 +202,7 @@ main:focus { outline: none; }
 .hero {
   position: relative; overflow: hidden;
   background:
-    radial-gradient(1200px 600px at 80% -10%, rgba(56,182,224,.18), transparent 60%),
+    radial-gradient(1100px 560px at 82% -10%, rgba(63,125,98,.30), transparent 60%),
     linear-gradient(155deg, var(--navy-900) 0%, var(--navy-800) 42%, var(--blue-600) 100%);
   color: #EAF2FB;
 }
@@ -215,7 +219,7 @@ main:focus { outline: none; }
 .hero .kicker {
   display: inline-flex; align-items: center; gap: .6em; font-size: .82rem; font-weight: 600;
   letter-spacing: .1em; text-transform: uppercase; color: var(--cyan-400);
-  background: rgba(56,182,224,.12); border: 1px solid rgba(56,182,224,.3);
+  background: rgba(63,125,98,.16); border: 1px solid rgba(63,125,98,.4);
   padding: .4em 1em; border-radius: 999px; margin-bottom: 1.4rem;
 }
 .hero .tagline { font-size: clamp(1.15rem, 2.4vw, 1.5rem); color: #BFD6EE; font-weight: 500;
