@@ -200,8 +200,8 @@ main:focus { outline: none; }
 .hero {
   position: relative; overflow: hidden;
   background:
-    radial-gradient(1100px 560px at 82% -10%, rgba(20,184,166,.20), transparent 60%),
-    linear-gradient(155deg, var(--navy-900) 0%, var(--navy-800) 42%, var(--blue-600) 100%);
+    radial-gradient(1100px 560px at 82% -10%, rgba(20,184,166,.22), transparent 55%),
+    linear-gradient(145deg, #062B56 0%, #0A4A92 40%, var(--blue-600) 76%, #2C86DD 100%);
   color: #EAF2FB;
 }
 .hero::after {  /* faint world-map / grid motif */
