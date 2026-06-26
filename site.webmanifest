@@ -1,0 +1,17 @@
+{
+  "name": "IMPRESIVE — International Multi-database Study Preparedness",
+  "short_name": "IMPRESIVE",
+  "description": "An international multi-database study preparedness platform for timely evaluation of disease and treatment through database standardization, integration and visualization.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F5F8FC",
+  "theme_color": "#0A2540",
+  "icons": [
+    {
+      "src": "/assets/img/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

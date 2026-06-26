@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — IMPRESIVE</title>
+  <meta name="description" content="Contact the IMPRESIVE team — for data partnership, research collaboration, industry / regulatory / policy enquiries, or general questions." />
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body data-page="contact">
+
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="index.html" aria-label="IMPRESIVE home">
+        <svg class="mark" viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="bm" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1565C0"/><stop offset="1" stop-color="#38B6E0"/></linearGradient></defs><rect width="64" height="64" rx="14" fill="#0A2540"/><g stroke="url(#bm)" stroke-width="2.4" fill="none" opacity=".9"><line x1="16" y1="46" x2="32" y2="32"/><line x1="32" y1="32" x2="48" y2="18"/><line x1="32" y1="32" x2="48" y2="44"/><line x1="16" y1="46" x2="30" y2="50"/></g><g fill="url(#bm)"><circle cx="16" cy="46" r="5"/><circle cx="32" cy="32" r="6"/><circle cx="48" cy="18" r="5"/><circle cx="48" cy="44" r="4.5"/><circle cx="30" cy="51" r="3.5"/></g></svg>
+        <span>IMPRESIVE<small>Multi-database Preparedness</small></span>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+      <nav class="nav-links" id="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="why.html">Why Multi-database</a>
+        <a href="methods.html">Methods &amp; Technology</a>
+        <a href="databases.html">Databases</a>
+        <a href="join.html">Join Us</a>
+        <a class="btn btn--primary" href="contact.html" aria-current="page">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="breadcrumb"><a href="index.html">Home</a> / Contact</p>
+      <h1>Contact us</h1>
+      <p>For data partnership, research collaboration, decision-partner enquiries, or general questions — we'd be glad to hear from you.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="grid cols-2" style="align-items:start;gap:2.4rem">
+        <!-- contact details + routing -->
+        <div>
+          <p class="eyebrow">Get in touch</p>
+          <h2>How to reach the team</h2>
+          <p>Use the form, or write to us directly. Please tell us which best describes your enquiry so we can
+            route it to the right group.</p>
+          <div class="card" style="margin-top:1.4rem">
+            <h3>General enquiries</h3>
+            <p><a href="mailto:contact@impresive.org">contact@impresive.org</a></p>
+          </div>
+          <div class="grid" style="margin-top:1.2rem;gap:1rem">
+            <div class="card reveal"><h3>Data partnership</h3><p>National claims, hospital EHR, registries, biobank-linked data and research data centers. <a href="join.html#data-partners">Partner criteria →</a></p></div>
+            <div class="card reveal"><h3>Research collaboration</h3><p>Proposals, protocols, modules, dashboards and manuscripts. <a href="join.html#researchers">Ways to take part →</a></p></div>
+            <div class="card reveal"><h3>Industry / regulatory / policy</h3><p>Disease burden, drug safety, comparative effectiveness, surveillance. <a href="join.html#decision-partners">Collaboration directions →</a></p></div>
+          </div>
+        </div>
+
+        <!-- message form -->
+        <div>
+          <form class="form card" data-mailto="contact@impresive.org" data-subject="IMPRESIVE contact / message board">
+            <h3>Send a message</h3>
+            <div class="field"><label>Name <span class="req">*</span></label><input name="Name" required /></div>
+            <div class="field"><label>Email <span class="req">*</span></label><input type="email" name="Email" required /></div>
+            <div class="field"><label>Affiliation</label><input name="Affiliation" /></div>
+            <div class="field"><label>I am a…</label>
+              <select name="Enquiry type">
+                <option>Data partner</option><option>Researcher</option>
+                <option>Industry / regulatory / policy partner</option>
+                <option>Student / early-career researcher</option>
+                <option>General / other</option>
+              </select>
+            </div>
+            <div class="field"><label>Message <span class="req">*</span></label><textarea name="Message" required></textarea></div>
+            <div class="form-status" role="status"></div>
+            <div>
+              <button type="submit" class="btn btn--primary btn--lg">Send message</button>
+              <p class="form-note" style="margin-top:.8rem">Submitting opens your email client. A server-side
+                message board will be added in a later phase.</p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div>
+          <div class="fbrand">
+            <svg class="mark" viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="fm" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1565C0"/><stop offset="1" stop-color="#38B6E0"/></linearGradient></defs><rect width="64" height="64" rx="14" fill="#102a4a"/><g stroke="url(#fm)" stroke-width="2.4" fill="none"><line x1="16" y1="46" x2="32" y2="32"/><line x1="32" y1="32" x2="48" y2="18"/><line x1="32" y1="32" x2="48" y2="44"/></g><g fill="url(#fm)"><circle cx="16" cy="46" r="5"/><circle cx="32" cy="32" r="6"/><circle cx="48" cy="18" r="5"/><circle cx="48" cy="44" r="4.5"/></g></svg>
+            IMPRESIVE
+          </div>
+          <p class="full">International Multi-database study PREparedness: Databases Standardization,
+            Integration and Visualization for timely Evaluation on Disease and Treatment.</p>
+        </div>
+        <div><h4>Explore</h4><ul>
+          <li><a href="about.html">About IMPRESIVE</a></li>
+          <li><a href="why.html">Why multi-database studies</a></li>
+          <li><a href="methods.html">Methods &amp; Technology</a></li>
+          <li><a href="databases.html">Databases &amp; Partners</a></li>
+        </ul></div>
+        <div><h4>Participate</h4><ul>
+          <li><a href="join.html">Join us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="join.html#proposal">Submit a proposal</a></li>
+        </ul></div>
+        <div><h4>Get involved</h4><div class="footer-cta">
+          <a href="join.html#data-partners">I am a data partner →</a>
+          <a href="join.html#researchers">I am a researcher →</a>
+          <a href="join.html#decision-partners">Industry / regulatory / policy →</a>
+        </div></div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span id="year">2026</span> IMPRESIVE. All rights reserved.</span>
+        <span>Prepared databases · Integrated evidence · Timely decisions</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
