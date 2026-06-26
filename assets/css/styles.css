@@ -9,9 +9,9 @@
   /* Blue palette */
   --navy-900: #0A2540;   /* deepest — headers, footer */
   --navy-800: #0E3A66;
-  --blue-700: #14528C;   /* primary */
-  --blue-600: #1565C0;
-  --blue-500: #1E78D4;   /* interactive */
+  --blue-700: #004E9E;   /* Amgen-blue dark (hover) */
+  --blue-600: #0063C3;   /* AMGEN BLUE — primary */
+  --blue-500: #2480D8;   /* interactive */
   --blue-400: #4F9BE8;
   --blue-200: #BBD6F2;
   --cyan-400: #38B6E0;   /* accent */
