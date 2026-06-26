@@ -16,6 +16,7 @@
   --blue-200: #BBD6F2;
   --sky-400: #38B6E0;    /* light sky-blue accent (same family as Amgen blue) */
   --cyan-400: #38B6E0;   /* accent alias */
+  --teal-400: #14B8A6;   /* subtle teal — used ONLY as the far end of gradients */
 
   --ink: #16222F;
   --slate: #46566A;
@@ -199,7 +200,7 @@ main:focus { outline: none; }
 .hero {
   position: relative; overflow: hidden;
   background:
-    radial-gradient(1100px 560px at 82% -10%, rgba(56,182,224,.22), transparent 60%),
+    radial-gradient(1100px 560px at 82% -10%, rgba(20,184,166,.20), transparent 60%),
     linear-gradient(155deg, var(--navy-900) 0%, var(--navy-800) 42%, var(--blue-600) 100%);
   color: #EAF2FB;
 }
@@ -249,7 +250,7 @@ main:focus { outline: none; }
 .card p:last-child { margin-bottom: 0; }
 .card .icon {
   width: 46px; height: 46px; border-radius: 11px; display: grid; place-items: center;
-  background: linear-gradient(150deg, var(--blue-600), var(--cyan-400));
+  background: linear-gradient(150deg, var(--blue-600), var(--teal-400));
   color: #fff; margin-bottom: 1rem; box-shadow: var(--shadow-sm);
 }
 .card .icon svg { width: 24px; height: 24px; }
@@ -346,7 +347,7 @@ main:focus { outline: none; }
 .readiness .row .name { font-size: .92rem; color: var(--slate); }
 .readiness .bar { height: 12px; border-radius: 999px; background: var(--canvas-2); overflow: hidden; }
 .readiness .bar > i { display: block; height: 100%; border-radius: 999px;
-  background: linear-gradient(90deg, var(--blue-600), var(--cyan-400)); width: 0; transition: width 1s ease; }
+  background: linear-gradient(90deg, var(--blue-600), var(--teal-400)); width: 0; transition: width 1s ease; }
 .readiness .pct { font-weight: 700; color: var(--navy-900); font-size: .9rem; text-align: right; }
 @media (max-width: 560px) { .readiness .row { grid-template-columns: 1fr 40px; }
   .readiness .row .name { grid-column: 1 / -1; } }
