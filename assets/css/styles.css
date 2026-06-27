@@ -367,6 +367,12 @@ main:focus { outline: none; }
 .lego-gutter .lego-tile { width: 54px; height: auto; }
 @media (max-width: 1340px) { .lego-gutter { display: none; } }
 
+/* a minifigure peeking on top of every card */
+.lego-peek { position: absolute; top: -24px; right: 12px; width: 44px; z-index: 3;
+  pointer-events: none; filter: drop-shadow(0 4px 4px rgba(6,30,60,.2)); }
+.lego-peek .lego-fig { width: 44px; height: auto; display: block; }
+@media (max-width: 600px) { .lego-peek { width: 36px; right: 8px; top: -20px; } .lego-peek .lego-fig { width: 36px; } }
+
 /* database cards */
 .db-card .flag { font-size: 1.6rem; }
 .db-card .meta { display: grid; grid-template-columns: auto 1fr; gap: .25rem .8rem;

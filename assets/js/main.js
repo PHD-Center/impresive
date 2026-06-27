@@ -412,6 +412,16 @@
       d.innerHTML = deco[i % deco.length];
       s.appendChild(d);
     });
+
+    /* a minifigure peeking on top of EVERY card — lego everywhere */
+    var crew = [BLUE, GREEN, TEAL, NAVY, { c: '#0E4E96', cd: '#0A3A6B', pl: '#2480D8', hd: '#2480D8', hl: '#3f8fe0', lens: '#d6e8fb', acc: 'mag' }];
+    [].forEach.call(document.querySelectorAll(".card"), function (card, i) {
+      if (getComputedStyle(card).position === "static") card.style.position = "relative";
+      var p = document.createElement("div");
+      p.className = "lego-peek"; p.setAttribute("aria-hidden", "true");
+      p.innerHTML = fig(crew[i % crew.length]);
+      card.appendChild(p);
+    });
   })();
 
   /* ---------- footer year ---------- */
