@@ -348,7 +348,24 @@ main:focus { outline: none; }
 .lego-scene .lego-tower { width: 116px; height: auto; }
 .lego-scene .lego-tiles { display: flex; flex-direction: column; gap: 6px; }
 .lego-scene .lego-tile { width: 48px; height: auto; }
+.lego-scene .lego-fig { width: 78px; }
 @media (max-width: 1040px) { .lego-scene { display: none; } }
+
+/* footer parade of minifigures */
+.lego-parade { display: flex; justify-content: center; align-items: flex-end; flex-wrap: wrap;
+  gap: 16px; padding-bottom: 1.6rem; margin-bottom: 1.4rem;
+  border-bottom: 1px solid rgba(255,255,255,.14); }
+.lego-parade .lego-fig { width: 66px; height: auto; }
+.lego-parade .lego-tile { width: 52px; height: auto; }
+@media (max-width: 520px) { .lego-parade .lego-fig { width: 54px; } .lego-parade .lego-tile { width: 44px; } }
+
+/* wide-screen side-gutter scatter (only where it clears the centered content) */
+.lego-gutter { position: absolute; bottom: 26px; z-index: 0; pointer-events: none;
+  filter: drop-shadow(0 6px 6px rgba(6,30,60,.2)); }
+.lego-gutter.left { left: 14px; } .lego-gutter.right { right: 14px; }
+.lego-gutter .lego-fig { width: 70px; height: auto; }
+.lego-gutter .lego-tile { width: 54px; height: auto; }
+@media (max-width: 1340px) { .lego-gutter { display: none; } }
 
 /* database cards */
 .db-card .flag { font-size: 1.6rem; }

@@ -291,24 +291,51 @@
     });
   })();
 
-  /* ---------- LEGO illustrations (clean bg + brick objects on every hero) ---------- */
+  /* ---------- LEGO illustrations (clean bg + brick objects everywhere) ---------- */
   (function () {
     var OL = 'stroke="#0a2540" stroke-width="2.4" stroke-linejoin="round"';
-    function fig(c, l) {
-      return '<svg class="lego-fig" viewBox="0 0 90 126" aria-hidden="true">' +
-        '<g ' + OL + '>' +
-        '<rect x="18" y="96" width="16" height="28" rx="3" fill="' + l + '"/>' +
-        '<rect x="40" y="96" width="16" height="28" rx="3" fill="' + l + '"/>' +
-        '<rect x="14" y="80" width="46" height="18" rx="3" fill="' + l + '"/>' +
-        '<path d="M16 50 H58 L62 84 H12 Z" fill="' + c + '"/>' +
-        '<path d="M16 54 C6 60 6 78 13 84 L22 80 C16 72 18 62 25 60 Z" fill="' + c + '"/>' +
-        '<path d="M58 54 C68 60 68 78 61 84 L52 80 C58 72 56 62 49 60 Z" fill="' + c + '"/>' +
-        '<circle cx="11" cy="84" r="6" fill="#F4C66A"/><circle cx="63" cy="84" r="6" fill="#F4C66A"/>' +
-        '<rect x="30" y="14" width="30" height="30" rx="8" fill="#F4C66A"/>' +
-        '<ellipse cx="45" cy="14" rx="7" ry="3" fill="#F4C66A"/></g>' +
-        '<circle cx="39" cy="28" r="2.3" fill="#0a2540"/><circle cx="51" cy="28" r="2.3" fill="#0a2540"/>' +
-        '<path d="M39 35 q6 5 12 0" fill="none" stroke="#0a2540" stroke-width="2" stroke-linecap="round"/></svg>';
+    /* traced cube-head researcher minifigure */
+    function fig(o) {
+      o = o || {};
+      var c = o.c || '#4E8AC4', cd = o.cd || '#3C72A8', pl = o.pl || '#5E9AD4',
+          hd = o.hd || '#5E9AD4', hl = o.hl || '#6FA8DF', lens = o.lens || '#d6e8fb', acc = o.acc || 'down';
+      var arms;
+      if (acc === 'scroll') {
+        arms = '<path d="M66 132 C44 150 44 176 60 188 L74 180 C64 168 66 152 82 146 Z" fill="' + c + '"/>' +
+          '<path d="M158 132 C180 150 180 176 164 188 L150 180 C160 168 158 152 142 146 Z" fill="' + c + '"/>' +
+          '<rect x="60" y="170" width="104" height="26" rx="13" fill="#ECDBAC"/>' +
+          '<ellipse cx="60" cy="183" rx="9" ry="13" fill="#d8c188"/><ellipse cx="164" cy="183" rx="9" ry="13" fill="#d8c188"/>';
+      } else if (acc === 'mag') {
+        arms = '<path d="M66 132 C44 150 44 176 60 188 L74 180 C64 168 66 152 82 146 Z" fill="' + c + '"/>' +
+          '<path d="M158 132 C182 144 184 120 168 112 L156 122 C166 130 160 140 146 142 Z" fill="' + c + '"/>' +
+          '<line x1="150" y1="118" x2="170" y2="98" stroke="#16263f" stroke-width="7"/>' +
+          '<circle cx="182" cy="84" r="17" fill="#d6e8fb"/>';
+      } else {
+        arms = '<path d="M66 130 C46 146 46 178 62 190 L76 184 C66 172 68 152 84 146 Z" fill="' + c + '"/>' +
+          '<path d="M158 130 C178 146 178 178 162 190 L148 184 C158 172 156 152 140 146 Z" fill="' + c + '"/>';
+      }
+      return '<svg class="lego-fig" viewBox="0 0 220 256" aria-hidden="true">' +
+        '<ellipse cx="112" cy="246" rx="60" ry="8" fill="rgba(10,37,64,.16)"/>' +
+        '<g stroke="#16263f" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">' +
+        '<rect x="80" y="196" width="28" height="44" rx="7" fill="' + cd + '"/>' +
+        '<rect x="116" y="196" width="28" height="44" rx="7" fill="' + cd + '"/>' +
+        '<rect x="64" y="120" width="96" height="84" rx="12" fill="' + c + '"/>' +
+        '<rect x="84" y="138" width="56" height="50" rx="8" fill="' + pl + '"/>' + arms +
+        '<rect x="58" y="22" width="104" height="92" rx="16" fill="' + hd + '"/>' +
+        '<rect x="58" y="22" width="104" height="40" rx="16" fill="' + hl + '"/>' +
+        '<rect x="92" y="8" width="36" height="18" rx="6" fill="' + hl + '"/></g>' +
+        '<g stroke="#16263f" stroke-width="5.5" stroke-linejoin="round">' +
+        '<rect x="70" y="64" width="36" height="28" rx="9" fill="' + lens + '"/>' +
+        '<rect x="114" y="64" width="36" height="28" rx="9" fill="' + lens + '"/></g>' +
+        '<path d="M106 78 H114" stroke="#16263f" stroke-width="5.5"/>' +
+        '<circle cx="88" cy="78" r="4.4" fill="#16263f"/><circle cx="132" cy="78" r="4.4" fill="#16263f"/>' +
+        '<path d="M96 100 q14 10 28 0" fill="none" stroke="#16263f" stroke-width="4.5" stroke-linecap="round"/></svg>';
     }
+    var BLUE = { c: '#4E8AC4', cd: '#3C72A8', pl: '#5E9AD4', hd: '#5E9AD4', hl: '#6FA8DF', lens: '#d6e8fb', acc: 'scroll' };
+    var GREEN = { c: '#3F8C6E', cd: '#2E6B54', pl: '#54A484', hd: '#54A484', hl: '#67B395', lens: '#eaf6ee', acc: 'mag' };
+    var TEAL = { c: '#2E8FA0', cd: '#1F6B78', pl: '#46A6B5', hd: '#46A6B5', hl: '#5FBCCB', lens: '#def3f6', acc: 'down' };
+    var NAVY = { c: '#0E4E96', cd: '#0A3A6B', pl: '#2480D8', hd: '#2480D8', hl: '#3f8fe0', lens: '#d6e8fb', acc: 'scroll' };
+
     function tower() {
       return '<svg class="lego-tower" viewBox="0 0 170 168" aria-hidden="true">' +
         '<g ' + OL + '><rect x="30" y="118" width="120" height="42" rx="6" fill="#0A4E96"/>' +
@@ -337,31 +364,54 @@
         (GLYPH[g] || '') + '</svg>';
     }
     function stack() { return '<div class="lego-tiles">' + [].slice.call(arguments).join('') + '</div>'; }
-    var B = '#0F6FD0', BL = '#0A3A6B', G = '#3F8C6E', GL = '#2A6B54', T = '#2480D8';
+
     var P = {
-      home: [tower(), fig(B, BL), fig(G, GL), stack(tile('chart', '#0063C3'), tile('network', '#2589A0'))],
-      about: [tower(), fig(B, BL)],
-      why: [fig(B, BL), fig(G, GL), stack(tile('check', G))],
-      methods: [fig(B, BL), stack(tile('chart', '#0063C3'), tile('check', '#2589A0'))],
-      databases: [tower(), fig(B, BL), stack(tile('globe', '#2589A0'))],
-      visualization: [fig(B, BL), stack(tile('chart', '#0063C3'), tile('network', G))],
-      mission: [fig(B, BL), stack(tile('check', G), tile('chart', '#0063C3'))],
-      projects: [tower(), fig(G, GL)],
-      network: [fig(B, BL), fig(G, GL), fig(T, BL)],
-      resources: [fig(B, BL), stack(tile('check', G), tile('shield', '#2589A0'))],
-      news: [fig(B, BL), stack(tile('globe', '#0063C3'))],
-      faq: [fig(G, GL), stack(tile('check', '#2589A0'))],
-      join: [fig(B, BL), fig(G, GL), stack(tile('network', '#2589A0'))],
-      contact: [fig(B, BL), stack(tile('globe', '#0063C3'))],
-      "404": [fig(B, BL)]
+      home: [tower(), fig(BLUE), fig(GREEN), stack(tile('chart', '#0063C3'), tile('network', '#2589A0'))],
+      about: [tower(), fig(BLUE), fig(TEAL)],
+      why: [fig(BLUE), fig(GREEN), stack(tile('check', '#3F8C6E'))],
+      methods: [fig(GREEN), fig(BLUE), stack(tile('chart', '#0063C3'), tile('check', '#2589A0'))],
+      databases: [tower(), fig(BLUE), stack(tile('globe', '#2589A0'))],
+      visualization: [fig(BLUE), fig(TEAL), stack(tile('chart', '#0063C3'), tile('network', '#3F8C6E'))],
+      mission: [fig(BLUE), fig(GREEN), stack(tile('check', '#3F8C6E'))],
+      projects: [tower(), fig(GREEN), fig(BLUE)],
+      network: [fig(BLUE), fig(GREEN), fig(TEAL), fig(NAVY)],
+      resources: [fig(GREEN), fig(BLUE), stack(tile('check', '#3F8C6E'), tile('shield', '#2589A0'))],
+      news: [fig(BLUE), fig(GREEN), stack(tile('globe', '#0063C3'))],
+      faq: [fig(GREEN), fig(BLUE), stack(tile('check', '#2589A0'))],
+      join: [fig(BLUE), fig(GREEN), fig(NAVY), stack(tile('network', '#2589A0'))],
+      contact: [fig(BLUE), fig(TEAL), stack(tile('globe', '#0063C3'))],
+      "404": [fig(BLUE), fig(GREEN)]
     };
+
+    /* hero scene */
     var hero = document.querySelector(".hero") || document.querySelector(".page-hero");
-    if (!hero) return;
-    var parts = P[document.body.getAttribute("data-page")] || [tower(), fig(B, BL)];
-    var scene = document.createElement("div");
-    scene.className = "lego-scene"; scene.setAttribute("aria-hidden", "true");
-    scene.innerHTML = parts.join("");
-    hero.appendChild(scene);
+    if (hero) {
+      var parts = P[document.body.getAttribute("data-page")] || [tower(), fig(BLUE)];
+      var scene = document.createElement("div");
+      scene.className = "lego-scene"; scene.setAttribute("aria-hidden", "true");
+      scene.innerHTML = parts.join("");
+      hero.appendChild(scene);
+    }
+
+    /* footer parade */
+    var footer = document.querySelector(".site-footer");
+    if (footer) {
+      var parade = document.createElement("div");
+      parade.className = "lego-parade"; parade.setAttribute("aria-hidden", "true");
+      parade.innerHTML = tile('', '#0F6FD0') + fig(BLUE) + fig(GREEN) + fig(TEAL) + fig(NAVY) + tile('', '#3F8C6E');
+      footer.insertBefore(parade, footer.firstChild);
+    }
+
+    /* scatter in wide-screen side gutters (hidden < 1340px so never overlaps text) */
+    var deco = [fig(TEAL), tile('', '#0E4E96'), fig(NAVY), tile('', '#3F8C6E'), fig(GREEN), tile('', '#0063C3')];
+    [].forEach.call(document.querySelectorAll("main .section"), function (s, i) {
+      s.style.position = "relative";
+      var d = document.createElement("div");
+      d.className = "lego-gutter " + (i % 2 ? "right" : "left");
+      d.setAttribute("aria-hidden", "true");
+      d.innerHTML = deco[i % deco.length];
+      s.appendChild(d);
+    });
   })();
 
   /* ---------- footer year ---------- */
