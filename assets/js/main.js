@@ -291,6 +291,79 @@
     });
   })();
 
+  /* ---------- LEGO illustrations (clean bg + brick objects on every hero) ---------- */
+  (function () {
+    var OL = 'stroke="#0a2540" stroke-width="2.4" stroke-linejoin="round"';
+    function fig(c, l) {
+      return '<svg class="lego-fig" viewBox="0 0 90 126" aria-hidden="true">' +
+        '<g ' + OL + '>' +
+        '<rect x="18" y="96" width="16" height="28" rx="3" fill="' + l + '"/>' +
+        '<rect x="40" y="96" width="16" height="28" rx="3" fill="' + l + '"/>' +
+        '<rect x="14" y="80" width="46" height="18" rx="3" fill="' + l + '"/>' +
+        '<path d="M16 50 H58 L62 84 H12 Z" fill="' + c + '"/>' +
+        '<path d="M16 54 C6 60 6 78 13 84 L22 80 C16 72 18 62 25 60 Z" fill="' + c + '"/>' +
+        '<path d="M58 54 C68 60 68 78 61 84 L52 80 C58 72 56 62 49 60 Z" fill="' + c + '"/>' +
+        '<circle cx="11" cy="84" r="6" fill="#F4C66A"/><circle cx="63" cy="84" r="6" fill="#F4C66A"/>' +
+        '<rect x="30" y="14" width="30" height="30" rx="8" fill="#F4C66A"/>' +
+        '<ellipse cx="45" cy="14" rx="7" ry="3" fill="#F4C66A"/></g>' +
+        '<circle cx="39" cy="28" r="2.3" fill="#0a2540"/><circle cx="51" cy="28" r="2.3" fill="#0a2540"/>' +
+        '<path d="M39 35 q6 5 12 0" fill="none" stroke="#0a2540" stroke-width="2" stroke-linecap="round"/></svg>';
+    }
+    function tower() {
+      return '<svg class="lego-tower" viewBox="0 0 170 168" aria-hidden="true">' +
+        '<g ' + OL + '><rect x="30" y="118" width="120" height="42" rx="6" fill="#0A4E96"/>' +
+        '<rect x="44" y="80" width="92" height="40" rx="6" fill="#0F6FD0"/>' +
+        '<rect x="58" y="42" width="64" height="40" rx="6" fill="#2480D8"/></g>' +
+        '<g stroke="#0a2540" stroke-width="1.8">' +
+        '<g fill="#2f7fd6"><ellipse cx="58" cy="118" rx="10" ry="5"/><ellipse cx="90" cy="118" rx="10" ry="5"/><ellipse cx="122" cy="118" rx="10" ry="5"/></g>' +
+        '<g fill="#3f8fe0"><ellipse cx="66" cy="80" rx="10" ry="5"/><ellipse cx="114" cy="80" rx="10" ry="5"/></g>' +
+        '<g fill="#5aa3ea"><ellipse cx="78" cy="42" rx="10" ry="5"/><ellipse cx="102" cy="42" rx="10" ry="5"/></g></g>' +
+        '<text x="90" y="106" text-anchor="middle" fill="#fff" font-size="13" font-weight="800" font-family="Inter,sans-serif">DATA</text>' +
+        '<line x1="90" y1="42" x2="90" y2="20" stroke="#0a2540" stroke-width="3"/>' +
+        '<path d="M90 20 L120 26 L90 36 Z" fill="#3F8C6E" stroke="#0a2540" stroke-width="2.2" stroke-linejoin="round"/></svg>';
+    }
+    var GLYPH = {
+      chart: '<g fill="#fff"><rect x="14" y="34" width="6" height="9"/><rect x="26" y="28" width="6" height="15"/><rect x="38" y="22" width="6" height="21"/></g>',
+      shield: '<path d="M30 18 l13 5 v9 c0 9 -7 14 -13 17 c-6 -3 -13 -8 -13 -17 v-9 z" fill="#fff"/>',
+      network: '<g fill="#fff" stroke="#fff" stroke-width="2"><circle cx="18" cy="34" r="3.5"/><circle cx="42" cy="26" r="3.5"/><circle cx="42" cy="42" r="3.5"/><path d="M21 33 L39 27 M21 35 L39 41"/></g>',
+      check: '<path d="M15 33 l8 8 L45 21" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>',
+      globe: '<g fill="none" stroke="#fff" stroke-width="2.4"><circle cx="30" cy="33" r="12"/><path d="M18 33 H42 M30 21 v24 M22 26 q8 7 16 0 M22 40 q8 -7 16 0"/></g>'
+    };
+    function tile(g, c) {
+      c = c || '#0063C3';
+      return '<svg class="lego-tile" viewBox="0 0 60 54" aria-hidden="true">' +
+        '<rect x="4" y="10" width="52" height="40" rx="7" fill="' + c + '" ' + OL + '/>' +
+        '<g fill="' + c + '" stroke="#0a2540" stroke-width="1.6"><ellipse cx="18" cy="10" rx="8" ry="4"/><ellipse cx="42" cy="10" rx="8" ry="4"/></g>' +
+        (GLYPH[g] || '') + '</svg>';
+    }
+    function stack() { return '<div class="lego-tiles">' + [].slice.call(arguments).join('') + '</div>'; }
+    var B = '#0F6FD0', BL = '#0A3A6B', G = '#3F8C6E', GL = '#2A6B54', T = '#2480D8';
+    var P = {
+      home: [tower(), fig(B, BL), fig(G, GL), stack(tile('chart', '#0063C3'), tile('network', '#2589A0'))],
+      about: [tower(), fig(B, BL)],
+      why: [fig(B, BL), fig(G, GL), stack(tile('check', G))],
+      methods: [fig(B, BL), stack(tile('chart', '#0063C3'), tile('check', '#2589A0'))],
+      databases: [tower(), fig(B, BL), stack(tile('globe', '#2589A0'))],
+      visualization: [fig(B, BL), stack(tile('chart', '#0063C3'), tile('network', G))],
+      mission: [fig(B, BL), stack(tile('check', G), tile('chart', '#0063C3'))],
+      projects: [tower(), fig(G, GL)],
+      network: [fig(B, BL), fig(G, GL), fig(T, BL)],
+      resources: [fig(B, BL), stack(tile('check', G), tile('shield', '#2589A0'))],
+      news: [fig(B, BL), stack(tile('globe', '#0063C3'))],
+      faq: [fig(G, GL), stack(tile('check', '#2589A0'))],
+      join: [fig(B, BL), fig(G, GL), stack(tile('network', '#2589A0'))],
+      contact: [fig(B, BL), stack(tile('globe', '#0063C3'))],
+      "404": [fig(B, BL)]
+    };
+    var hero = document.querySelector(".hero") || document.querySelector(".page-hero");
+    if (!hero) return;
+    var parts = P[document.body.getAttribute("data-page")] || [tower(), fig(B, BL)];
+    var scene = document.createElement("div");
+    scene.className = "lego-scene"; scene.setAttribute("aria-hidden", "true");
+    scene.innerHTML = parts.join("");
+    hero.appendChild(scene);
+  })();
+
   /* ---------- footer year ---------- */
   var y = document.getElementById("year");
   if (y) y.textContent = new Date().getFullYear();

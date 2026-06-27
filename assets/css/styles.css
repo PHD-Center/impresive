@@ -339,6 +339,17 @@ main:focus { outline: none; }
   box-shadow: var(--shadow-sm); padding: 1.2rem; overflow: hidden; }
 .lego-journey svg { width: 100%; height: auto; display: block; }
 
+/* LEGO illustrations placed on each hero (decorative) */
+.page-hero { position: relative; overflow: hidden; }
+.hero .wrap, .page-hero .wrap { position: relative; z-index: 2; }
+.lego-scene { position: absolute; right: clamp(10px, 3vw, 46px); bottom: 0; z-index: 1;
+  display: flex; align-items: flex-end; gap: 8px; pointer-events: none; filter: drop-shadow(0 6px 6px rgba(6,30,60,.25)); }
+.lego-scene .lego-fig { width: 60px; height: auto; }
+.lego-scene .lego-tower { width: 116px; height: auto; }
+.lego-scene .lego-tiles { display: flex; flex-direction: column; gap: 6px; }
+.lego-scene .lego-tile { width: 48px; height: auto; }
+@media (max-width: 1040px) { .lego-scene { display: none; } }
+
 /* database cards */
 .db-card .flag { font-size: 1.6rem; }
 .db-card .meta { display: grid; grid-template-columns: auto 1fr; gap: .25rem .8rem;
