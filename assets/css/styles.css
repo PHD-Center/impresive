@@ -248,11 +248,20 @@ main:focus { outline: none; }
 .card h3 { margin-top: .2rem; }
 .card p:last-child { margin-bottom: 0; }
 .card .icon {
-  width: 46px; height: 46px; border-radius: 11px; display: grid; place-items: center;
-  background: linear-gradient(150deg, var(--blue-600), var(--teal-400));
-  color: #fff; margin-bottom: 1rem; box-shadow: var(--shadow-sm);
+  position: relative; width: 50px; height: 44px; border-radius: 9px; display: grid; place-items: center;
+  background: linear-gradient(150deg, var(--blue-600), var(--cyan-400));
+  color: #fff; margin: 10px 0 1rem; border: 2.5px solid #0a2540;
+  box-shadow: 3px 3px 0 rgba(10,37,64,.22);
 }
-.card .icon svg { width: 24px; height: 24px; }
+/* studs — turn the capability icon into a LEGO brick tile */
+.card .icon::before {
+  content: ""; position: absolute; top: -9px; left: 7px; right: 7px; height: 13px; pointer-events: none;
+  background-image:
+    radial-gradient(circle at 11px 6px, rgba(255,255,255,.85) 0 3px, transparent 3.6px),
+    radial-gradient(circle at 11px 7px, rgba(10,37,64,.85) 0 4px, transparent 4.6px);
+  background-size: 22px 13px; background-repeat: repeat-x;
+}
+.card .icon svg { width: 22px; height: 22px; }
 .card .num { font-family: var(--font-serif); font-weight: 700; color: var(--blue-200);
   font-size: 1.4rem; line-height: 1; }
 
@@ -369,9 +378,25 @@ main:focus { outline: none; }
 
 /* a minifigure peeking on top of every card */
 .lego-peek { position: absolute; top: -24px; right: 12px; width: 44px; z-index: 3;
-  pointer-events: none; filter: drop-shadow(0 4px 4px rgba(6,30,60,.2)); }
+  pointer-events: none; transform-origin: 50% 100%; filter: drop-shadow(0 4px 4px rgba(6,30,60,.2)); }
 .lego-peek .lego-fig { width: 44px; height: auto; display: block; }
 @media (max-width: 600px) { .lego-peek { width: 36px; right: 8px; top: -20px; } .lego-peek .lego-fig { width: 36px; } }
+/* peek waves / bounces when its card is hovered */
+.card:hover .lego-peek { animation: lego-hi .7s ease; }
+@keyframes lego-hi {
+  0% { transform: translateY(0) rotate(0); }
+  25% { transform: translateY(-10px) rotate(-8deg); }
+  55% { transform: translateY(-3px) rotate(7deg); }
+  80% { transform: translateY(-1px) rotate(-3deg); }
+  100% { transform: translateY(0) rotate(0); }
+}
+
+/* small brick beside every section heading */
+.lego-h-brick { display: inline-block; width: 30px; vertical-align: -5px; margin-right: 11px; }
+.lego-h-brick .lego-tile { width: 30px; height: auto; display: inline-block; }
+@media (max-width: 600px) { .lego-h-brick { width: 24px; margin-right: 8px; } .lego-h-brick .lego-tile { width: 24px; } }
+
+@media (prefers-reduced-motion: reduce) { .card:hover .lego-peek { animation: none; } }
 
 /* database cards */
 .db-card .flag { font-size: 1.6rem; }

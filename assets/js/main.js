@@ -298,7 +298,7 @@
     function fig(o) {
       o = o || {};
       var c = o.c || '#4E8AC4', cd = o.cd || '#3C72A8', pl = o.pl || '#5E9AD4',
-          hd = o.hd || '#5E9AD4', hl = o.hl || '#6FA8DF', lens = o.lens || '#d6e8fb', acc = o.acc || 'down';
+          hd = o.hd || '#5E9AD4', hl = o.hl || '#6FA8DF', lens = o.lens || '#d6e8fb', acc = o.acc || 'down', mood = o.mood || '';
       var arms;
       if (acc === 'scroll') {
         arms = '<path d="M66 132 C44 150 44 176 60 188 L74 180 C64 168 66 152 82 146 Z" fill="' + c + '"/>' +
@@ -329,12 +329,18 @@
         '<rect x="114" y="64" width="36" height="28" rx="9" fill="' + lens + '"/></g>' +
         '<path d="M106 78 H114" stroke="#16263f" stroke-width="5.5"/>' +
         '<circle cx="88" cy="78" r="4.4" fill="#16263f"/><circle cx="132" cy="78" r="4.4" fill="#16263f"/>' +
-        '<path d="M96 100 q14 10 28 0" fill="none" stroke="#16263f" stroke-width="4.5" stroke-linecap="round"/></svg>';
+        (mood === 'cross'
+          ? '<path d="M74 60 L98 67" stroke="#16263f" stroke-width="5" stroke-linecap="round"/>' +
+            '<path d="M146 60 L122 67" stroke="#16263f" stroke-width="5" stroke-linecap="round"/>' +
+            '<path d="M96 106 q14 -9 28 0" fill="none" stroke="#16263f" stroke-width="4.5" stroke-linecap="round"/>'
+          : '<path d="M96 100 q14 10 28 0" fill="none" stroke="#16263f" stroke-width="4.5" stroke-linecap="round"/>') +
+        '</svg>';
     }
     var BLUE = { c: '#4E8AC4', cd: '#3C72A8', pl: '#5E9AD4', hd: '#5E9AD4', hl: '#6FA8DF', lens: '#d6e8fb', acc: 'scroll' };
     var GREEN = { c: '#3F8C6E', cd: '#2E6B54', pl: '#54A484', hd: '#54A484', hl: '#67B395', lens: '#eaf6ee', acc: 'mag' };
     var TEAL = { c: '#2E8FA0', cd: '#1F6B78', pl: '#46A6B5', hd: '#46A6B5', hl: '#5FBCCB', lens: '#def3f6', acc: 'down' };
     var NAVY = { c: '#0E4E96', cd: '#0A3A6B', pl: '#2480D8', hd: '#2480D8', hl: '#3f8fe0', lens: '#d6e8fb', acc: 'scroll' };
+    var RED = { c: '#D8472F', cd: '#A8331F', pl: '#E86A55', hd: '#E0533C', hl: '#EE7A66', lens: '#ffe3dc', acc: 'down', mood: 'cross' };
 
     function tower() {
       return '<svg class="lego-tower" viewBox="0 0 170 168" aria-hidden="true">' +
@@ -368,13 +374,13 @@
     var P = {
       home: [tower(), fig(BLUE), fig(GREEN), stack(tile('chart', '#0063C3'), tile('network', '#2589A0'))],
       about: [tower(), fig(BLUE), fig(TEAL)],
-      why: [fig(BLUE), fig(GREEN), stack(tile('check', '#3F8C6E'))],
+      why: [fig(RED), fig(BLUE), fig(GREEN), stack(tile('check', '#3F8C6E'))],
       methods: [fig(GREEN), fig(BLUE), stack(tile('chart', '#0063C3'), tile('check', '#2589A0'))],
       databases: [tower(), fig(BLUE), stack(tile('globe', '#2589A0'))],
       visualization: [fig(BLUE), fig(TEAL), stack(tile('chart', '#0063C3'), tile('network', '#3F8C6E'))],
       mission: [fig(BLUE), fig(GREEN), stack(tile('check', '#3F8C6E'))],
       projects: [tower(), fig(GREEN), fig(BLUE)],
-      network: [fig(BLUE), fig(GREEN), fig(TEAL), fig(NAVY)],
+      network: [fig(BLUE), fig(GREEN), fig(RED), fig(NAVY)],
       resources: [fig(GREEN), fig(BLUE), stack(tile('check', '#3F8C6E'), tile('shield', '#2589A0'))],
       news: [fig(BLUE), fig(GREEN), stack(tile('globe', '#0063C3'))],
       faq: [fig(GREEN), fig(BLUE), stack(tile('check', '#2589A0'))],
@@ -413,14 +419,27 @@
       s.appendChild(d);
     });
 
-    /* a minifigure peeking on top of EVERY card — lego everywhere */
-    var crew = [BLUE, GREEN, TEAL, NAVY, { c: '#0E4E96', cd: '#0A3A6B', pl: '#2480D8', hd: '#2480D8', hl: '#3f8fe0', lens: '#d6e8fb', acc: 'mag' }];
+    /* a minifigure peeking on top of EVERY card — lego everywhere.
+       Why & Governance pages get red "challenge" figures mixed in. */
+    var pg = document.body.getAttribute("data-page");
+    var crew = (pg === "why" || pg === "network")
+      ? [RED, BLUE, RED, GREEN, NAVY, RED]
+      : [BLUE, GREEN, TEAL, NAVY, { c: '#0E4E96', cd: '#0A3A6B', pl: '#2480D8', hd: '#2480D8', hl: '#3f8fe0', lens: '#d6e8fb', acc: 'mag' }];
     [].forEach.call(document.querySelectorAll(".card"), function (card, i) {
       if (getComputedStyle(card).position === "static") card.style.position = "relative";
       var p = document.createElement("div");
       p.className = "lego-peek"; p.setAttribute("aria-hidden", "true");
       p.innerHTML = fig(crew[i % crew.length]);
       card.appendChild(p);
+    });
+
+    /* a little brick beside every section heading */
+    var hbColors = ['#0063C3', '#3F8C6E', '#2480D8', '#2589A0', '#0A4E96'];
+    [].forEach.call(document.querySelectorAll("main .section h2"), function (h, i) {
+      var b = document.createElement("span");
+      b.className = "lego-h-brick"; b.setAttribute("aria-hidden", "true");
+      b.innerHTML = tile('', hbColors[i % hbColors.length]);
+      h.insertBefore(b, h.firstChild);
     });
   })();
 
