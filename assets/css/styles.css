@@ -68,8 +68,10 @@ body {
   font-family: var(--font-sans);
   color: var(--ink);
   background-color: var(--baseplate);
-  background-image: radial-gradient(circle at 11px 11px, var(--baseplate-stud) 0 4px, transparent 5px);
-  background-size: 26px 26px;
+  background-image:
+    radial-gradient(circle at 11px 9px, rgba(255,255,255,.55) 0 3px, transparent 3.8px),
+    radial-gradient(circle at 11px 12px, rgba(10,58,107,.13) 0 4px, transparent 5px);
+  background-size: 28px 28px;
   background-attachment: fixed;
   line-height: 1.65;
   font-size: 17px;
@@ -100,16 +102,9 @@ main:focus { outline: none; }
 /* ----- Layout helpers ----- */
 .wrap { width: min(100% - 2.4rem, var(--maxw)); margin-inline: auto; }
 .section { padding-block: var(--space); }
-.section--tint { background: var(--canvas-2); position: relative; border-block: 3px solid var(--brick-border); }
-.section--navy { background: var(--navy-900); color: #DCE7F2; position: relative; border-block: 3px solid var(--brick-border); }
+.section--tint { background: var(--canvas-2); border-block: 3px solid var(--brick-border); }
+.section--navy { background: var(--navy-900); color: #DCE7F2; border-block: 3px solid var(--brick-border); }
 .section--navy h2, .section--navy h3 { color: #fff; }
-/* stud strip across the top of each brick band */
-.section--tint::before, .section--navy::before {
-  content: ""; position: absolute; left: 0; right: 0; top: 9px; height: 18px;
-  background-size: 42px 18px; background-repeat: repeat-x; pointer-events: none; opacity: .5;
-}
-.section--tint::before { background-image: radial-gradient(circle at 19px 9px, var(--stud-color) 0 7px, transparent 8px); }
-.section--navy::before { background-image: radial-gradient(circle at 19px 9px, rgba(255,255,255,.45) 0 7px, transparent 8px); }
 .eyebrow {
   font-family: var(--font-sans); font-weight: 700; font-size: .78rem;
   letter-spacing: .14em; text-transform: uppercase; color: var(--blue-600);
@@ -267,12 +262,13 @@ main:focus { outline: none; }
   border-radius: var(--brick-radius); padding: 1.5rem; box-shadow: var(--brick-shadow);
   transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease;
 }
-/* LEGO studs along the top edge */
+/* LEGO studs along the top edge — raised round bumps */
 .card::before {
-  content: ""; position: absolute; top: calc(var(--stud) * -0.6); left: 20px;
-  width: 96px; height: var(--stud); pointer-events: none;
-  background-image: radial-gradient(circle at 50% 50%, var(--stud-color) 0 6px, transparent 7px);
-  background-size: 30px var(--stud); background-repeat: repeat-x;
+  content: ""; position: absolute; top: -10px; left: 18px; right: 18px; height: 17px; pointer-events: none;
+  background-image:
+    radial-gradient(circle at 15px 7px, rgba(255,255,255,.95) 0 3.5px, transparent 4.2px),
+    radial-gradient(circle at 15px 9px, #b7cde8 0 6.5px, transparent 7.2px);
+  background-size: 32px 17px; background-repeat: repeat-x;
 }
 .card--hover:hover { transform: translate(-2px, -2px); box-shadow: var(--brick-shadow-hover); border-color: var(--blue-200); }
 .card h3 { margin-top: .2rem; }
@@ -467,10 +463,7 @@ main:focus { outline: none; }
    Footer
    ========================================================================== */
 .site-footer { background: var(--navy-900); color: #B9CCE0; padding-block: 3.5rem 2rem;
-  position: relative; border-top: 3px solid var(--brick-border); }
-.site-footer::before { content: ""; position: absolute; left: 0; right: 0; top: 9px; height: 18px;
-  background-image: radial-gradient(circle at 19px 9px, rgba(255,255,255,.4) 0 7px, transparent 8px);
-  background-size: 42px 18px; background-repeat: repeat-x; pointer-events: none; opacity: .5; }
+  border-top: 3px solid var(--brick-border); }
 .site-footer h4 { color: #fff; font-family: var(--font-sans); font-size: .82rem;
   letter-spacing: .1em; text-transform: uppercase; margin: 0 0 1rem; }
 .footer-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1.3fr; gap: 2rem; }
