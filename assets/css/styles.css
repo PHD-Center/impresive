@@ -45,11 +45,13 @@
   --radius-sm: 9px;
   /* LEGO / brick treatment (form only — colors stay the same) */
   --brick-radius: 14px;
-  --brick-border: #D4DEEA;       /* hairline-ish brick edge */
-  --brick-shadow: 5px 5px 0 rgba(6,41,86,.16);
-  --brick-shadow-hover: 9px 9px 0 rgba(6,41,86,.18);
-  --stud: 13px;                   /* stud diameter */
-  --stud-color: rgba(0,99,195,.22);   /* Amgen-blue stud, translucent */
+  --brick-border: #0A2540;       /* thick black-navy brick edge */
+  --brick-shadow: 5px 6px 0 rgba(10,37,64,.22);
+  --brick-shadow-hover: 9px 11px 0 rgba(10,37,64,.24);
+  --stud: 15px;                   /* stud diameter */
+  --stud-color: rgba(10,37,64,.20);   /* dark stud on light bricks */
+  --baseplate: #D7E3F1;           /* LEGO baseplate (light blue) */
+  --baseplate-stud: rgba(10,58,107,.14);
   --shadow-sm: 0 1px 2px rgba(10, 37, 64, .06), 0 1px 3px rgba(10, 37, 64, .08);
   --shadow-md: 0 6px 18px rgba(10, 37, 64, .08), 0 2px 6px rgba(10, 37, 64, .06);
   --shadow-lg: 0 18px 48px rgba(10, 37, 64, .14);
@@ -65,7 +67,10 @@ body {
   margin: 0;
   font-family: var(--font-sans);
   color: var(--ink);
-  background: var(--canvas);
+  background-color: var(--baseplate);
+  background-image: radial-gradient(circle at 11px 11px, var(--baseplate-stud) 0 4px, transparent 5px);
+  background-size: 26px 26px;
+  background-attachment: fixed;
   line-height: 1.65;
   font-size: 17px;
   -webkit-font-smoothing: antialiased;
@@ -95,9 +100,16 @@ main:focus { outline: none; }
 /* ----- Layout helpers ----- */
 .wrap { width: min(100% - 2.4rem, var(--maxw)); margin-inline: auto; }
 .section { padding-block: var(--space); }
-.section--tint { background: var(--canvas-2); }
-.section--navy { background: var(--navy-900); color: #DCE7F2; }
+.section--tint { background: var(--canvas-2); position: relative; border-block: 3px solid var(--brick-border); }
+.section--navy { background: var(--navy-900); color: #DCE7F2; position: relative; border-block: 3px solid var(--brick-border); }
 .section--navy h2, .section--navy h3 { color: #fff; }
+/* stud strip across the top of each brick band */
+.section--tint::before, .section--navy::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 9px; height: 18px;
+  background-size: 42px 18px; background-repeat: repeat-x; pointer-events: none; opacity: .5;
+}
+.section--tint::before { background-image: radial-gradient(circle at 19px 9px, var(--stud-color) 0 7px, transparent 8px); }
+.section--navy::before { background-image: radial-gradient(circle at 19px 9px, rgba(255,255,255,.45) 0 7px, transparent 8px); }
 .eyebrow {
   font-family: var(--font-sans); font-weight: 700; font-size: .78rem;
   letter-spacing: .14em; text-transform: uppercase; color: var(--blue-600);
@@ -121,7 +133,7 @@ main:focus { outline: none; }
   transition: transform .12s ease, box-shadow .12s ease, background .15s ease;
 }
 .btn:active { transform: translate(3px, 3px); box-shadow: none; }
-.btn--primary { background: var(--blue-600); color: #fff; border-color: #073e7e; }
+.btn--primary { background: var(--blue-600); color: #fff; border-color: var(--brick-border); }
 .btn--primary:hover { background: var(--blue-700); color: #fff; }
 .btn--ghost { background: transparent; color: var(--navy-900); border-color: var(--brick-border); box-shadow: none; }
 .btn--ghost:hover { border-color: var(--blue-400); color: var(--blue-700); }
@@ -134,12 +146,12 @@ main:focus { outline: none; }
    ========================================================================== */
 .site-header {
   position: sticky; top: 0; z-index: 50;
-  background: rgba(255, 255, 255, .9);
-  backdrop-filter: saturate(140%) blur(10px);
-  border-bottom: 1px solid var(--hairline);
+  background: #fff;
+  border-bottom: 3px solid var(--brick-border);
+  box-shadow: 0 5px 0 rgba(10,37,64,.12);
   transition: box-shadow .2s ease;
 }
-.site-header.is-scrolled { box-shadow: var(--shadow-sm); }
+.site-header.is-scrolled { box-shadow: 0 6px 0 rgba(10,37,64,.16); }
 .nav { display: flex; align-items: center; gap: 1.5rem; height: 72px; }
 .brand { display: flex; align-items: center; gap: .6rem; font-family: var(--font-serif);
   font-weight: 700; font-size: 1.3rem; color: var(--navy-900); letter-spacing: -.01em; }
@@ -212,6 +224,7 @@ main:focus { outline: none; }
   position: relative; overflow: hidden;
   background: var(--hero-grad);
   color: #EAF2FB;
+  border-bottom: 3px solid var(--brick-border);
 }
 .hero::after {  /* subtle LEGO baseplate studs */
   content: ""; position: absolute; inset: 0; opacity: .16; pointer-events: none;
@@ -250,16 +263,16 @@ main:focus { outline: none; }
    ========================================================================== */
 .card {
   position: relative;
-  background: var(--surface); border: 2px solid var(--brick-border);
+  background: var(--surface); border: 3px solid var(--brick-border);
   border-radius: var(--brick-radius); padding: 1.5rem; box-shadow: var(--brick-shadow);
   transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease;
 }
 /* LEGO studs along the top edge */
 .card::before {
-  content: ""; position: absolute; top: calc(var(--stud) * -0.55); left: 22px;
-  width: 78px; height: var(--stud); pointer-events: none;
-  background-image: radial-gradient(circle at 50% 50%, var(--stud-color) 0 5px, transparent 6px);
-  background-size: 26px var(--stud); background-repeat: repeat-x;
+  content: ""; position: absolute; top: calc(var(--stud) * -0.6); left: 20px;
+  width: 96px; height: var(--stud); pointer-events: none;
+  background-image: radial-gradient(circle at 50% 50%, var(--stud-color) 0 6px, transparent 7px);
+  background-size: 30px var(--stud); background-repeat: repeat-x;
 }
 .card--hover:hover { transform: translate(-2px, -2px); box-shadow: var(--brick-shadow-hover); border-color: var(--blue-200); }
 .card h3 { margin-top: .2rem; }
@@ -453,7 +466,11 @@ main:focus { outline: none; }
 /* ==========================================================================
    Footer
    ========================================================================== */
-.site-footer { background: var(--navy-900); color: #B9CCE0; padding-block: 3.5rem 2rem; }
+.site-footer { background: var(--navy-900); color: #B9CCE0; padding-block: 3.5rem 2rem;
+  position: relative; border-top: 3px solid var(--brick-border); }
+.site-footer::before { content: ""; position: absolute; left: 0; right: 0; top: 9px; height: 18px;
+  background-image: radial-gradient(circle at 19px 9px, rgba(255,255,255,.4) 0 7px, transparent 8px);
+  background-size: 42px 18px; background-repeat: repeat-x; pointer-events: none; opacity: .5; }
 .site-footer h4 { color: #fff; font-family: var(--font-sans); font-size: .82rem;
   letter-spacing: .1em; text-transform: uppercase; margin: 0 0 1rem; }
 .footer-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1.3fr; gap: 2rem; }
