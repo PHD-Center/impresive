@@ -43,15 +43,6 @@
   --maxw: 1180px;
   --radius: 14px;
   --radius-sm: 9px;
-  /* LEGO / brick treatment (form only — colors stay the same) */
-  --brick-radius: 14px;
-  --brick-border: #0A2540;       /* thick black-navy brick edge */
-  --brick-shadow: 5px 6px 0 rgba(10,37,64,.22);
-  --brick-shadow-hover: 9px 11px 0 rgba(10,37,64,.24);
-  --stud: 15px;                   /* stud diameter */
-  --stud-color: rgba(10,37,64,.20);   /* dark stud on light bricks */
-  --baseplate: #D7E3F1;           /* LEGO baseplate (light blue) */
-  --baseplate-stud: rgba(10,58,107,.14);
   --shadow-sm: 0 1px 2px rgba(10, 37, 64, .06), 0 1px 3px rgba(10, 37, 64, .08);
   --shadow-md: 0 6px 18px rgba(10, 37, 64, .08), 0 2px 6px rgba(10, 37, 64, .06);
   --shadow-lg: 0 18px 48px rgba(10, 37, 64, .14);
@@ -67,12 +58,7 @@ body {
   margin: 0;
   font-family: var(--font-sans);
   color: var(--ink);
-  background-color: var(--baseplate);
-  background-image:
-    radial-gradient(circle at 11px 9px, rgba(255,255,255,.55) 0 3px, transparent 3.8px),
-    radial-gradient(circle at 11px 12px, rgba(10,58,107,.13) 0 4px, transparent 5px);
-  background-size: 28px 28px;
-  background-attachment: fixed;
+  background: var(--canvas);
   line-height: 1.65;
   font-size: 17px;
   -webkit-font-smoothing: antialiased;
@@ -102,8 +88,8 @@ main:focus { outline: none; }
 /* ----- Layout helpers ----- */
 .wrap { width: min(100% - 2.4rem, var(--maxw)); margin-inline: auto; }
 .section { padding-block: var(--space); }
-.section--tint { background: var(--canvas-2); border-block: 3px solid var(--brick-border); }
-.section--navy { background: var(--navy-900); color: #DCE7F2; border-block: 3px solid var(--brick-border); }
+.section--tint { background: var(--canvas-2); }
+.section--navy { background: var(--navy-900); color: #DCE7F2; }
 .section--navy h2, .section--navy h3 { color: #fff; }
 .eyebrow {
   font-family: var(--font-sans); font-weight: 700; font-size: .78rem;
@@ -122,31 +108,30 @@ main:focus { outline: none; }
 /* ----- Buttons ----- */
 .btn {
   display: inline-flex; align-items: center; gap: .5em;
-  font-weight: 700; font-size: .98rem; padding: .7em 1.4em;
-  border-radius: 11px; border: 2px solid transparent; cursor: pointer;
-  box-shadow: var(--brick-shadow);
-  transition: transform .12s ease, box-shadow .12s ease, background .15s ease;
+  font-weight: 600; font-size: .98rem; padding: .72em 1.4em;
+  border-radius: 999px; border: 1.5px solid transparent; cursor: pointer;
+  transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
 }
-.btn:active { transform: translate(3px, 3px); box-shadow: none; }
-.btn--primary { background: var(--blue-600); color: #fff; border-color: var(--brick-border); }
-.btn--primary:hover { background: var(--blue-700); color: #fff; }
-.btn--ghost { background: transparent; color: var(--navy-900); border-color: var(--brick-border); box-shadow: none; }
+.btn:active { transform: translateY(1px); }
+.btn--primary { background: var(--blue-600); color: #fff; box-shadow: var(--shadow-sm); }
+.btn--primary:hover { background: var(--blue-700); color: #fff; box-shadow: var(--shadow-md); }
+.btn--ghost { background: transparent; color: var(--navy-900); border-color: var(--hairline); }
 .btn--ghost:hover { border-color: var(--blue-400); color: var(--blue-700); }
-.btn--light { background: #fff; color: var(--navy-900); border-color: rgba(0,0,0,.14); }
+.btn--light { background: #fff; color: var(--navy-900); }
 .btn--light:hover { background: var(--canvas); color: var(--blue-700); }
-.btn--lg { font-size: 1.05rem; padding: .82em 1.7em; }
+.btn--lg { font-size: 1.05rem; padding: .85em 1.7em; }
 
 /* ==========================================================================
    Header / nav
    ========================================================================== */
 .site-header {
   position: sticky; top: 0; z-index: 50;
-  background: #fff;
-  border-bottom: 3px solid var(--brick-border);
-  box-shadow: 0 5px 0 rgba(10,37,64,.12);
+  background: rgba(255, 255, 255, .9);
+  backdrop-filter: saturate(140%) blur(10px);
+  border-bottom: 1px solid var(--hairline);
   transition: box-shadow .2s ease;
 }
-.site-header.is-scrolled { box-shadow: 0 6px 0 rgba(10,37,64,.16); }
+.site-header.is-scrolled { box-shadow: var(--shadow-sm); }
 .nav { display: flex; align-items: center; gap: 1.5rem; height: 72px; }
 .brand { display: flex; align-items: center; gap: .6rem; font-family: var(--font-serif);
   font-weight: 700; font-size: 1.3rem; color: var(--navy-900); letter-spacing: -.01em; }
@@ -219,16 +204,14 @@ main:focus { outline: none; }
   position: relative; overflow: hidden;
   background: var(--hero-grad);
   color: #EAF2FB;
-  border-bottom: 3px solid var(--brick-border);
 }
-.hero::after {  /* subtle LEGO baseplate studs */
-  content: ""; position: absolute; inset: 0; opacity: .16; pointer-events: none;
+.hero::after {  /* faint world-map / grid motif */
+  content: ""; position: absolute; inset: 0; opacity: .12; pointer-events: none;
   background-image:
-    radial-gradient(circle at 50% 40%, rgba(255,255,255,.85) 0 3.4px, transparent 4px),
-    radial-gradient(circle at 50% 60%, rgba(0,0,0,.25) 0 3.6px, transparent 4.2px);
-  background-size: 30px 30px; background-position: 0 0, 0 1.5px;
-  -webkit-mask-image: radial-gradient(900px 520px at 78% 28%, #000 30%, transparent 78%);
-          mask-image: radial-gradient(900px 520px at 78% 28%, #000 30%, transparent 78%);
+    radial-gradient(circle, rgba(255,255,255,.7) 1.1px, transparent 1.2px);
+  background-size: 26px 26px;
+  -webkit-mask-image: radial-gradient(900px 500px at 75% 30%, #000 30%, transparent 75%);
+          mask-image: radial-gradient(900px 500px at 75% 30%, #000 30%, transparent 75%);
 }
 .hero .wrap { position: relative; z-index: 1; padding-block: clamp(3.5rem, 8vw, 6.5rem); }
 .hero h1 { color: #fff; max-width: 16ch; }
@@ -257,27 +240,17 @@ main:focus { outline: none; }
    Cards
    ========================================================================== */
 .card {
-  position: relative;
-  background: var(--surface); border: 3px solid var(--brick-border);
-  border-radius: var(--brick-radius); padding: 1.5rem; box-shadow: var(--brick-shadow);
-  transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease;
+  background: var(--surface); border: 1px solid var(--hairline);
+  border-radius: var(--radius); padding: 1.5rem; box-shadow: var(--shadow-sm);
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
 }
-/* LEGO studs along the top edge — raised round bumps */
-.card::before {
-  content: ""; position: absolute; top: -10px; left: 18px; right: 18px; height: 17px; pointer-events: none;
-  background-image:
-    radial-gradient(circle at 15px 7px, rgba(255,255,255,.95) 0 3.5px, transparent 4.2px),
-    radial-gradient(circle at 15px 9px, #b7cde8 0 6.5px, transparent 7.2px);
-  background-size: 32px 17px; background-repeat: repeat-x;
-}
-.card--hover:hover { transform: translate(-2px, -2px); box-shadow: var(--brick-shadow-hover); border-color: var(--blue-200); }
+.card--hover:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: var(--blue-200); }
 .card h3 { margin-top: .2rem; }
 .card p:last-child { margin-bottom: 0; }
 .card .icon {
-  width: 46px; height: 46px; border-radius: 10px; display: grid; place-items: center;
+  width: 46px; height: 46px; border-radius: 11px; display: grid; place-items: center;
   background: linear-gradient(150deg, var(--blue-600), var(--teal-400));
-  color: #fff; margin-bottom: 1rem; border: 2px solid #073e7e;
-  box-shadow: 3px 3px 0 rgba(6,41,86,.2);
+  color: #fff; margin-bottom: 1rem; box-shadow: var(--shadow-sm);
 }
 .card .icon svg { width: 24px; height: 24px; }
 .card .num { font-family: var(--font-serif); font-weight: 700; color: var(--blue-200);
@@ -285,17 +258,16 @@ main:focus { outline: none; }
 
 /* value strip */
 .values { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0;
-  border: 2px solid var(--brick-border); border-radius: var(--brick-radius); overflow: hidden;
-  background: #fff; box-shadow: var(--brick-shadow); }
-.values .v { padding: 1.4rem 1.2rem; border-right: 2px solid var(--brick-border); }
+  border: 1px solid var(--hairline); border-radius: var(--radius); overflow: hidden; background: #fff; }
+.values .v { padding: 1.4rem 1.2rem; border-right: 1px solid var(--hairline); }
 .values .v:last-child { border-right: 0; }
 .values .v b { display: block; color: var(--blue-700); font-family: var(--font-serif); font-size: 1.05rem; }
 .values .v span { font-size: .9rem; color: var(--muted); }
 
 /* stats */
 .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; }
-.stat { text-align: center; padding: 1.5rem 1rem; background: #fff; border: 2px solid var(--brick-border);
-  border-radius: var(--brick-radius); box-shadow: var(--brick-shadow); }
+.stat { text-align: center; padding: 1.5rem 1rem; background: #fff; border: 1px solid var(--hairline);
+  border-radius: var(--radius); }
 .stat .figure { font-family: var(--font-serif); font-weight: 700; color: var(--navy-900);
   font-size: clamp(2.2rem, 5vw, 3rem); line-height: 1; }
 .stat .figure .plus { color: var(--cyan-400); }
@@ -309,9 +281,9 @@ main:focus { outline: none; }
    ========================================================================== */
 .pipeline { display: flex; flex-wrap: wrap; gap: .6rem; align-items: stretch; }
 .pipeline .step {
-  flex: 1 1 150px; background: #fff; border: 2px solid var(--brick-border);
-  border-left: 7px solid var(--blue-500); border-radius: 10px;
-  padding: .9rem 1rem; position: relative; box-shadow: var(--brick-shadow);
+  flex: 1 1 150px; background: #fff; border: 1px solid var(--hairline);
+  border-left: 4px solid var(--blue-500); border-radius: var(--radius-sm);
+  padding: .9rem 1rem; position: relative; box-shadow: var(--shadow-sm);
 }
 .pipeline .step b { display: block; color: var(--navy-900); font-family: var(--font-serif); }
 .pipeline .step span { font-size: .82rem; color: var(--muted); }
@@ -319,7 +291,7 @@ main:focus { outline: none; }
 
 /* compare two-column (why page) */
 .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-.compare .panel { border-radius: var(--brick-radius); padding: 1.6rem; border: 2px solid var(--brick-border); box-shadow: var(--brick-shadow); }
+.compare .panel { border-radius: var(--radius); padding: 1.6rem; border: 1px solid var(--hairline); }
 .compare .yes { background: #F0F8F3; border-color: #CBEAD8; }
 .compare .no { background: #FBF4F1; border-color: #F1D9CF; }
 .compare h3 { display: flex; align-items: center; gap: .5rem; }
@@ -328,7 +300,7 @@ main:focus { outline: none; }
 .compare ul { padding-left: 1.1em; }
 
 /* accordion (methods detail) */
-.accordion { border: 2px solid var(--brick-border); border-radius: var(--brick-radius); overflow: hidden; background: #fff; box-shadow: var(--brick-shadow); }
+.accordion { border: 1px solid var(--hairline); border-radius: var(--radius); overflow: hidden; background: #fff; }
 .accordion details { border-bottom: 1px solid var(--hairline); }
 .accordion details:last-child { border-bottom: 0; }
 .accordion summary {
@@ -348,9 +320,9 @@ main:focus { outline: none; }
 
 /* callout */
 .callout {
-  border-radius: var(--brick-radius); padding: 1.8rem 2rem;
+  border-radius: var(--radius); padding: 1.8rem 2rem;
   background: linear-gradient(135deg, var(--navy-800), var(--blue-600)); color: #fff;
-  border: 2px solid #073e7e; box-shadow: var(--brick-shadow);
+  box-shadow: var(--shadow-md);
 }
 .callout .q { font-family: var(--font-serif); font-size: clamp(1.2rem, 2.6vw, 1.7rem); font-weight: 600; }
 .callout .zh { color: #BBD6F2; margin-top: .4rem; }
@@ -363,12 +335,9 @@ main:focus { outline: none; }
 
 /* LEGO journey (isometric brick roadmap) */
 .lego-journey { position: relative; background: var(--canvas-2);
-  border: 2px solid var(--brick-border); border-radius: var(--brick-radius);
-  box-shadow: var(--brick-shadow); padding: 1.2rem; overflow: hidden; }
-.lego-journey::before { content: ""; position: absolute; inset: 0; opacity: .5; pointer-events: none;
-  background-image: radial-gradient(circle at 50% 42%, rgba(10,58,107,.10) 0 3px, transparent 4px);
-  background-size: 30px 30px; }
-.lego-journey svg { position: relative; width: 100%; height: auto; display: block; }
+  border: 1px solid var(--hairline); border-radius: var(--radius);
+  box-shadow: var(--shadow-sm); padding: 1.2rem; overflow: hidden; }
+.lego-journey svg { width: 100%; height: auto; display: block; }
 
 /* database cards */
 .db-card .flag { font-size: 1.6rem; }
@@ -462,8 +431,7 @@ main:focus { outline: none; }
 /* ==========================================================================
    Footer
    ========================================================================== */
-.site-footer { background: var(--navy-900); color: #B9CCE0; padding-block: 3.5rem 2rem;
-  border-top: 3px solid var(--brick-border); }
+.site-footer { background: var(--navy-900); color: #B9CCE0; padding-block: 3.5rem 2rem; }
 .site-footer h4 { color: #fff; font-family: var(--font-sans); font-size: .82rem;
   letter-spacing: .1em; text-transform: uppercase; margin: 0 0 1rem; }
 .footer-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1.3fr; gap: 2rem; }
