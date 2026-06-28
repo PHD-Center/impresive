@@ -381,22 +381,47 @@ main:focus { outline: none; }
   pointer-events: none; transform-origin: 50% 100%; filter: drop-shadow(0 4px 4px rgba(6,30,60,.2)); }
 .lego-peek .lego-fig { width: 44px; height: auto; display: block; }
 @media (max-width: 600px) { .lego-peek { width: 36px; right: 8px; top: -20px; } .lego-peek .lego-fig { width: 36px; } }
-/* peek waves / bounces when its card is hovered */
-.card:hover .lego-peek { animation: lego-hi .7s ease; }
-@keyframes lego-hi {
-  0% { transform: translateY(0) rotate(0); }
-  25% { transform: translateY(-10px) rotate(-8deg); }
-  55% { transform: translateY(-3px) rotate(7deg); }
-  80% { transform: translateY(-1px) rotate(-3deg); }
-  100% { transform: translateY(0) rotate(0); }
+/* card minifig: three different hover stunts (jump-spin / backflip / wiggle) */
+.card:hover .pk0 { animation: lego-jump .9s cubic-bezier(.34,1.5,.5,1); }
+.card:hover .pk1 { animation: lego-flip 1s ease; }
+.card:hover .pk2 { animation: lego-wiggle .7s ease; }
+@keyframes lego-jump {
+  0% { transform: translateY(0) scaleY(1); }
+  12% { transform: translateY(0) scaleX(1.12) scaleY(.82); }
+  40% { transform: translateY(-28px) rotate(8deg) scaleY(1.06); }
+  62% { transform: translateY(-22px) rotate(-185deg); }
+  82% { transform: translateY(0) rotate(-360deg) scaleX(1.1) scaleY(.9); }
+  100% { transform: translateY(0) rotate(-360deg); }
 }
+@keyframes lego-flip {
+  0% { transform: translateY(0) rotate(0); }
+  22% { transform: translateY(-6px) scaleY(.9); }
+  55% { transform: translateY(-34px) rotate(200deg); }
+  100% { transform: translateY(0) rotate(360deg); }
+}
+@keyframes lego-wiggle {
+  0%,100% { transform: rotate(0); }
+  20% { transform: rotate(-15deg); } 45% { transform: rotate(12deg); }
+  70% { transform: rotate(-7deg); } 88% { transform: rotate(4deg); }
+}
+/* idle ambient motion for hero + footer minifigs */
+@keyframes lego-bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+@keyframes lego-sway { 0%,100% { transform: rotate(-3deg); } 50% { transform: rotate(3deg); } }
+.lego-scene .lego-fig, .lego-parade .lego-fig { transform-origin: 50% 100%; animation: lego-bob 3.2s ease-in-out infinite; }
+.lego-scene .lego-fig:nth-child(odd), .lego-parade .lego-fig:nth-child(3n) { animation: lego-sway 4.2s ease-in-out infinite; }
+.lego-parade .lego-fig:nth-child(2) { animation-delay: .25s; }
+.lego-parade .lego-fig:nth-child(3) { animation-delay: .55s; }
+.lego-parade .lego-fig:nth-child(4) { animation-delay: .85s; }
+.lego-parade .lego-fig:nth-child(5) { animation-delay: 1.15s; }
 
 /* small brick beside every section heading */
 .lego-h-brick { display: inline-block; width: 30px; vertical-align: -5px; margin-right: 11px; }
 .lego-h-brick .lego-tile { width: 30px; height: auto; display: inline-block; }
 @media (max-width: 600px) { .lego-h-brick { width: 24px; margin-right: 8px; } .lego-h-brick .lego-tile { width: 24px; } }
 
-@media (prefers-reduced-motion: reduce) { .card:hover .lego-peek { animation: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .card:hover .lego-peek, .lego-scene .lego-fig, .lego-parade .lego-fig { animation: none !important; }
+}
 
 /* CDM showcase — framed like a LEGO build-instruction plate */
 .cdm-showcase { position: relative; margin: 1.6rem 0 0; background: #fff;

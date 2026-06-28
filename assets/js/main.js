@@ -428,7 +428,7 @@
     [].forEach.call(document.querySelectorAll(".card"), function (card, i) {
       if (getComputedStyle(card).position === "static") card.style.position = "relative";
       var p = document.createElement("div");
-      p.className = "lego-peek"; p.setAttribute("aria-hidden", "true");
+      p.className = "lego-peek pk" + (i % 3); p.setAttribute("aria-hidden", "true");
       p.innerHTML = fig(crew[i % crew.length]);
       card.appendChild(p);
     });
