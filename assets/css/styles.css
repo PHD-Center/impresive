@@ -398,6 +398,26 @@ main:focus { outline: none; }
 
 @media (prefers-reduced-motion: reduce) { .card:hover .lego-peek { animation: none; } }
 
+/* CDM showcase — framed like a LEGO build-instruction plate */
+.cdm-showcase { position: relative; margin: 1.6rem 0 0; background: #fff;
+  border: 3px solid #0a2540; border-radius: 16px; box-shadow: 7px 8px 0 rgba(10,37,64,.18);
+  padding: 14px 14px 10px; }
+.cdm-showcase::before { content: ""; position: absolute; top: -13px; left: 26px; width: 150px; height: 17px;
+  pointer-events: none; background-repeat: repeat-x; background-size: 30px 17px;
+  background-image:
+    radial-gradient(circle at 14px 6px, rgba(255,255,255,.9) 0 3px, transparent 3.6px),
+    radial-gradient(circle at 14px 8px, #2480D8 0 7px, transparent 7.6px); }
+.cdm-showcase img { width: 100%; height: auto; display: block; border-radius: 10px; }
+.cdm-showcase figcaption { text-align: center; color: var(--muted); font-size: .92rem; margin-top: .75rem; }
+.cdm-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem 1.5rem; margin-top: 1.8rem; }
+.cdm-step { display: flex; gap: .7rem; align-items: flex-start; }
+.cdm-step .n { flex: none; width: 32px; height: 28px; border-radius: 7px; color: #fff; font-weight: 800;
+  display: grid; place-items: center; border: 2px solid #0a2540; box-shadow: 2px 2px 0 rgba(10,37,64,.25); }
+.cdm-step b { color: var(--navy-900); }
+.cdm-step p { margin: .15rem 0 0; color: var(--slate); font-size: .92rem; line-height: 1.5; }
+@media (max-width: 760px) { .cdm-steps { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 520px) { .cdm-steps { grid-template-columns: 1fr; } }
+
 /* database cards */
 .db-card .flag { font-size: 1.6rem; }
 .db-card .meta { display: grid; grid-template-columns: auto 1fr; gap: .25rem .8rem;
