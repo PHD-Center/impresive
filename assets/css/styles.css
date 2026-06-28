@@ -451,13 +451,6 @@ main:focus { outline: none; }
   border: 2.5px solid var(--brick-edge, #0E3A66); border-radius: 18px;
   box-shadow: 0 14px 30px rgba(10,37,64,.14), 0 3px 0 rgba(10,37,64,.10);
   padding: 16px; }
-/* a neat, centred row of plate studs on top */
-.cdm-showcase::before { content: ""; position: absolute; top: -11px; left: 50%; transform: translateX(-50%);
-  width: min(64%, 320px); height: 15px; pointer-events: none;
-  background-repeat: repeat-x; background-position: center; background-size: 27px 15px;
-  background-image:
-    radial-gradient(circle at 13.5px 5px, rgba(255,255,255,.95) 0 2.4px, transparent 3px),
-    radial-gradient(circle at 13.5px 7.5px, #1f6fc0 0 6.4px, transparent 7px); }
 .cdm-showcase img { width: 100%; height: auto; display: block; border-radius: 12px;
   box-shadow: inset 0 0 0 1px rgba(10,37,64,.06); }
 .cdm-showcase figcaption { text-align: center; color: var(--muted); font-size: .92rem; margin-top: .75rem; }
