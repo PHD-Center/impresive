@@ -419,8 +419,31 @@ main:focus { outline: none; }
 .lego-h-brick .lego-tile { width: 30px; height: auto; display: inline-block; }
 @media (max-width: 600px) { .lego-h-brick { width: 24px; margin-right: 8px; } .lego-h-brick .lego-tile { width: 24px; } }
 
+/* waving arm (independent part) */
+.lego-arm { transform-box: fill-box; transform-origin: 28% 96%; animation: lego-wave-idle 2.6s ease-in-out infinite; }
+@keyframes lego-wave-idle { 0%,100% { transform: rotate(-5deg); } 50% { transform: rotate(-15deg); } }
+.card:hover .lego-arm { animation: lego-wave-big .45s ease-in-out infinite; }
+@keyframes lego-wave-big { 0%,100% { transform: rotate(-10deg); } 50% { transform: rotate(-46deg); } }
+
+/* occasional blink (eyes squish) */
+.lego-eyes { transform-box: fill-box; transform-origin: 50% 50%; animation: lego-blink 5.5s ease-in-out infinite; animation-delay: var(--bd, 0s); }
+@keyframes lego-blink { 0%,90%,100% { transform: scaleY(1); } 94% { transform: scaleY(.12); } }
+.lego-scene .lego-fig:nth-child(2) { --bd: 1.4s; } .lego-scene .lego-fig:nth-child(3) { --bd: 2.6s; } .lego-scene .lego-fig:nth-child(4) { --bd: 3.7s; }
+.lego-parade .lego-fig:nth-child(3) { --bd: 1.6s; } .lego-parade .lego-fig:nth-child(4) { --bd: 2.7s; } .lego-parade .lego-fig:nth-child(5) { --bd: 3.8s; }
+
+/* speech bubble on card hover */
+.lego-bubble { position: absolute; left: 50%; top: -20px; transform: translate(-50%, 5px) scale(.5);
+  transform-origin: bottom center; background: #fff; border: 2px solid #16263f; border-radius: 10px;
+  padding: 2px 8px; font-size: 11px; font-weight: 800; color: #16263f; white-space: nowrap;
+  opacity: 0; pointer-events: none; transition: .2s cubic-bezier(.3,1.5,.5,1); z-index: 5;
+  box-shadow: 2px 2px 0 rgba(10,37,64,.2); }
+.lego-bubble::after { content: ""; position: absolute; left: 50%; bottom: -8px; transform: translateX(-50%);
+  border: 5px solid transparent; border-top-color: #16263f; }
+.card:hover .lego-bubble { opacity: 1; transform: translate(-50%, 0) scale(1); }
+
 @media (prefers-reduced-motion: reduce) {
-  .card:hover .lego-peek, .lego-scene .lego-fig, .lego-parade .lego-fig { animation: none !important; }
+  .card:hover .lego-peek, .lego-scene .lego-fig, .lego-parade .lego-fig,
+  .lego-arm, .lego-eyes { animation: none !important; }
 }
 
 /* CDM showcase — framed like a LEGO build-instruction plate */

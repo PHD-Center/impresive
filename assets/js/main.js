@@ -300,7 +300,11 @@
       var c = o.c || '#4E8AC4', cd = o.cd || '#3C72A8', pl = o.pl || '#5E9AD4',
           hd = o.hd || '#5E9AD4', hl = o.hl || '#6FA8DF', lens = o.lens || '#d6e8fb', acc = o.acc || 'down', mood = o.mood || '';
       var arms;
-      if (acc === 'scroll') {
+      if (o.wave) {
+        arms = '<path d="M66 130 C46 146 46 178 62 190 L76 184 C66 172 68 152 84 146 Z" fill="' + c + '"/>' +
+          '<g class="lego-arm"><path d="M150 140 C150 114 168 96 180 92 L189 104 C178 110 166 128 164 146 Z" fill="' + c + '"/>' +
+          '<circle cx="185" cy="90" r="11" fill="' + hd + '"/></g>';
+      } else if (acc === 'scroll') {
         arms = '<path d="M66 132 C44 150 44 176 60 188 L74 180 C64 168 66 152 82 146 Z" fill="' + c + '"/>' +
           '<path d="M158 132 C180 150 180 176 164 188 L150 180 C160 168 158 152 142 146 Z" fill="' + c + '"/>' +
           '<rect x="60" y="170" width="104" height="26" rx="13" fill="#ECDBAC"/>' +
@@ -328,7 +332,7 @@
         '<rect x="70" y="64" width="36" height="28" rx="9" fill="' + lens + '"/>' +
         '<rect x="114" y="64" width="36" height="28" rx="9" fill="' + lens + '"/></g>' +
         '<path d="M106 78 H114" stroke="#16263f" stroke-width="5.5"/>' +
-        '<circle cx="88" cy="78" r="4.4" fill="#16263f"/><circle cx="132" cy="78" r="4.4" fill="#16263f"/>' +
+        '<g class="lego-eyes"><circle cx="88" cy="78" r="4.4" fill="#16263f"/><circle cx="132" cy="78" r="4.4" fill="#16263f"/></g>' +
         (mood === 'cross'
           ? '<path d="M74 60 L98 67" stroke="#16263f" stroke-width="5" stroke-linecap="round"/>' +
             '<path d="M146 60 L122 67" stroke="#16263f" stroke-width="5" stroke-linecap="round"/>' +
@@ -429,7 +433,10 @@
       if (getComputedStyle(card).position === "static") card.style.position = "relative";
       var p = document.createElement("div");
       p.className = "lego-peek pk" + (i % 3); p.setAttribute("aria-hidden", "true");
-      p.innerHTML = fig(crew[i % crew.length]);
+      p.style.setProperty("--bd", ((i % 5) * 1.1 + 0.4).toFixed(2) + "s");
+      var preset = Object.assign({}, crew[i % crew.length], { wave: true });
+      var msg = ["Hi!", "RWE!", "Let's build!", "Data!", "Nice!", "Click!"][i % 6];
+      p.innerHTML = '<span class="lego-bubble">' + msg + '</span>' + fig(preset);
       card.appendChild(p);
     });
 
